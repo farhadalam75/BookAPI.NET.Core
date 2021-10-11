@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookAPI
 {
@@ -27,6 +29,7 @@ namespace BookAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookDB")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
